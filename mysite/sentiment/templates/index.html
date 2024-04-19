@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <title>
+        Index
+    </title>
+
+
+    <header>
+
+    </header>
+    <body>
+        <section class="hidden">
+            <h1>
+
+                Welcome to Sentiment Finder
+
+            </h1>
+        </section>
+        <section class="hidden">
+            <form action="/sentiment/index/" method="post">
+                {% csrf_token %}
+                <label for="link_view">Your link: </label>
+                <input id="link_view" type="text" name="link-url" value="">
+                <input type="submit" value="OK">
+            </form>
+        </section>
+
+        <section class="hidden">
+            {% if link_list %}
+                <ul>
+                {% for link in link_list %}
+                    <li>{{ link.link_url }}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+        </section>
+
+    </body>
+
+    <script defer src = "../static/javascript/index.js"></script>
+    <link rel="stylesheet" href="../static/css/index.css">
+
+</html>

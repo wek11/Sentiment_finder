@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    <header>
+
+    </header>
+    <body>
+
+        <h1>
+
+            {{ link_url }}
+
+            {{ text_sentiment }}
+
+        </h1>
+
+        <p>
+
+            {% if link_data %}
+                <ul>
+                {% for link in link_data %}
+                    <li>{{ link }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
+        </p>
+
+        
+
+
+        <h2>
+
+            {{ sentiment_score }}
+
+        </h2>
+
+    </body>
+
+</html>
