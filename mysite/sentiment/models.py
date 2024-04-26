@@ -12,9 +12,10 @@ class Link(models.Model):
     
     def reset_id(self):
         links = self.objects.all()
-        index = 1
+        index = 0
         for link in links:
             link.id = index
+            index += 1
     
 class Data(models.Model):
     text = models.CharField(max_length=10000)

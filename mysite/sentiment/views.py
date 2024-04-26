@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 from .models import Link, Data
 from sorting import get_data
@@ -8,6 +8,7 @@ import sorting
 
 # Create your views here.
 def index(request):
+    Link.reset_id(Link)
     link_list = Link.objects.order_by('id')
     context = {
         'link_list': link_list,
@@ -49,7 +50,7 @@ def delete_link(request, pk):
 
     if request.method == 'POST':
         link.delete()
-        Link.reset_id()
-        return render(request, 'index.html')
+        Link.reset_id(Link)
+        return JsonResponse({"name": 'worked'})
     
     return render(request, 'index.html')
