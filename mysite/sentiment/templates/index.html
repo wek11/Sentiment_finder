@@ -32,7 +32,12 @@
             {% if link_list %}
                 <ul>
                 {% for link in link_list %}
-                    <li>{{ link.link_url }}</li>
+                    <li>{{ link.link_url }} 
+                        <form action="{% url 'sentiment:delete_link' link.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
                 {% endfor %}
                 </ul>
             {% else %}

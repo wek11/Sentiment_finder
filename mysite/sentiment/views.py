@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Link, Data
@@ -19,28 +19,37 @@ def index(request):
 
 def url_display(request):
     if (request.method == "POST"):
-
-        link = get_object_or_404(Link, id=1)
-        link_data = get_object_or_404(Data, id=1)
-
+        
         if (request.POST['link-url'] == ""):
             return render(request, "index.html")
         
         else:
-            link.link_url = request.POST['link-url']
-            link.save()
-            
-            text = get_data(link.link_url)
-            link_data.text = text
-            link_data.save()
+            length = Link.objects.all().count()
+            link = Link(link_url=request.POST['link-url'], text="")
+            link.id = length + 1
 
-            return HttpResponseRedirect('/sentiment/results')
+            text = get_data(link.link_url)
+            link.text = text
+
+            link.save()
+
+            return HttpResponseRedirect('/sentiment/results/' + str(link.id) + "/")
         
     else:
         return HttpResponseRedirect('/sentiment/')
     
-def show_results(request):
-    link = get_object_or_404(Link, id=1)
-    link_data = get_object_or_404(Data, id=1)
+def show_results(request, index):
+    link = get_object_or_404(Link, id=index)
+    link_data = get_object_or_404(Data, id=index)
     text_sentiment = gather_sentiment(link_data.text)
     return render(request, 'url-display.html', {'link_url': link.link_url, 'link_data': sorting.strip_to_sentences(link_data.text.split("',")), "text_sentiment": text_sentiment})
+
+def delete_link(request, pk):
+    link = get_object_or_404(Link, pk=pk)
+
+    if request.method == 'POST':
+        link.delete()
+        Link.reset_id()
+        return render(request, 'index.html')
+    
+    return render(request, 'index.html')
