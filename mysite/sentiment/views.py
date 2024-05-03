@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from .models import Link, Data
 from sorting import get_data
 from analysis import gather_sentiment
@@ -41,10 +41,11 @@ def url_display(request):
     
 def show_results(request, index):
     link = get_object_or_404(Link, id=index)
-    link_data = get_object_or_404(Data, id=index)
-    text_sentiment = gather_sentiment(link_data.text)
-    return render(request, 'url-display.html', {'link_url': link.link_url, 'link_data': sorting.strip_to_sentences(link_data.text.split("',")), "text_sentiment": text_sentiment})
+    text_sentiment = gather_sentiment(link.text, link.link_url)
+    return render(request, 'url-display.html', {'link_url': link.link_url, 
+    'link_data': sorting.strip_to_sentences(link.text, link.link_url), "text_sentiment": text_sentiment})
 
+@csrf_exempt
 def delete_link(request, pk):
     link = get_object_or_404(Link, pk=pk)
 
