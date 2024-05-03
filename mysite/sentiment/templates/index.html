@@ -3,7 +3,27 @@
 
 <html lang="en">
 
-    
+    <div>
+
+        <h2>Your Links</h2>
+
+        {% if link_list %}
+            <ul>
+            {% for link in link_list %}
+                <li>{{ link.link_url }} 
+                    <!-- <form action="{% url 'sentiment:delete_link' link.id %}" method="post"> 
+                        {% csrf_token %} -->
+                        <button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
+                    <!-- </form> -->
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+
+
+    </div>
 
     <title>
         Index
@@ -13,9 +33,8 @@
     <header>
 
     </header>
-    <body>
 
-        
+    <body>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>    
 
         <section class="hidden">
@@ -34,22 +53,7 @@
             </form>
         </section>
 
-        <section class="hidden">
-            {% if link_list %}
-                <ul>
-                {% for link in link_list %}
-                    <li>{{ link.link_url }} 
-                        <!-- <form action="{% url 'sentiment:delete_link' link.id %}" method="post"> 
-                            {% csrf_token %} -->
-                            <button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
-                        <!-- </form> -->
-                    </li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>No polls are available.</p>
-            {% endif %}
-        </section>
+        
 
     </body>
 

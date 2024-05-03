@@ -47,3 +47,9 @@ section {
     filter: blur(0px);
     transform: translateX(0);
 }
+
+div {
+    width: 200px;
+    padding-left: 20px;
+    height: 100vh;
+}
