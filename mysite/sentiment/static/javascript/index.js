@@ -21,7 +21,7 @@ let deleteMe = (ele, id) => {
         type: 'POST',
         data : {
             name:"name",
-            csrfmiddlewaretoken: '{{ csrf_token }}' , //This is must for security in Django
+            csrfmiddlewaretoken: '{{ csrf_token }}', //This is must for security in Django
         }, 
         success : function(response){
             ele.parentNode.remove();

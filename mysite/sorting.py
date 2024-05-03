@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests, sys, wikipedia, ssl, os
 from lxml import html
+import re
 orig_sslsocket_init = ssl.SSLSocket.__init__
 ssl.SSLSocket.__init__ = lambda *args, cert_reqs=ssl.CERT_NONE, **kwargs: orig_sslsocket_init(*args, cert_reqs=ssl.CERT_NONE, **kwargs)
 
@@ -106,9 +107,12 @@ def get_data(url):
         print(page.content)
         return page.content
     
-def strip_to_sentences(text_list: list): 
+def strip_to_sentences(text_list: list, url): 
     prefixes = {"Mr", "Mrs", "Dr", "Miss"}
     stripped_list = []
+
+    if "wikipedia" in url:
+        stripped_list = re.split("{3}=|{2}= [a-zA-Z] {3}=|{2}=", text_list)
 
     for i in range(len(text_list)):
         sentence = text_list[i].replace('"content', "")

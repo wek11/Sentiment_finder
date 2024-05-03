@@ -5,14 +5,13 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 sia = SentimentIntensityAnalyzer()
 
 def gather_sentiment(text):
-    
     stopwords = nltk.corpus.stopwords.words("english")
     total_score= 0.0
 
     avg = 0.0
     words = nltk.word_tokenize(text)
     sentences = text.split("',")
-    sentences = sorting.strip_to_sentences(sentences)
+    sentences = sorting.strip_to_sentences(sentences, "")
     words = [w for w in words if w.isalpha()]
     if len(sentences) == 0:
         return "N/A"
