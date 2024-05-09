@@ -30,3 +30,19 @@ let deleteMe = (ele, id) => {
 
     })
 }   
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+
+
+document.getElementById("collapse1").addEventListener("click", function() {
+    let content = document.getElementById("collapsible")
+    if (content.classList.contains("uncollapsed")) {
+        content.classList.add("collapsed")
+        content.classList.remove("uncollapsed")
+    } else {
+        content.classList.remove("collapsed")
+        content.classList.add("uncollapsed")
+    }
+});

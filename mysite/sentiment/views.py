@@ -41,7 +41,7 @@ def url_display(request):
     
 def show_results(request, index):
     link = get_object_or_404(Link, id=index)
-    text_sentiment = gather_sentiment(link.text, link.link_url)
+    text_sentiment = gather_sentiment(link.text)
     return render(request, 'url-display.html', {'link_url': link.link_url, 
     'link_data': sorting.strip_to_sentences(link.text, link.link_url), "text_sentiment": text_sentiment})
 

@@ -1,29 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.collapsible {
-    padding: 10px;
-}
-
-.uncollapsed {
-    display: block;
-    background-color: #f1f1f1;
-}
-
-.collapsed {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-  }
-
-.navbar {
-    position: fixed;
-    z-index: 10;
-}
 
 body {
-    display: relative;
     background-color: whitesmoke;
     font-family: "Poppins", sans-serif;
 }

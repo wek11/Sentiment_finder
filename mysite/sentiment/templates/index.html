@@ -3,25 +3,28 @@
 
 <html lang="en">
 
-    <div>
+    <div class="navbar">
 
-        <h2>Your Links</h2>
+        <h2>Your Links<button type="button" onClick="collapse()" id="collapse1">close</button></h2>
 
-        {% if link_list %}
-            <ul>
-            {% for link in link_list %}
-                <li>{{ link.link_url }} 
-                    <!-- <form action="{% url 'sentiment:delete_link' link.id %}" method="post"> 
-                        {% csrf_token %} -->
-                        <button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
-                    <!-- </form> -->
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <p>No polls are available.</p>
-        {% endif %}
+        <div id="collapsible">
 
+            {% if link_list %}
+                <ul>
+                {% for link in link_list %}
+                    <li>{{ link.link_url }} 
+                        <!-- <form action="{% url 'sentiment:delete_link' link.id %}" method="post"> 
+                            {% csrf_token %} -->
+                            <button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
+                        <!-- </form> -->
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+
+        </div>
 
     </div>
 
