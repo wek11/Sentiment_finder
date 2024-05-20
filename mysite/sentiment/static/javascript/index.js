@@ -32,9 +32,7 @@ let deleteMe = (ele, id) => {
 }   
 
 var coll = document.getElementsByClassName("collapsible");
-var i;
-
-
+var i; 
 
 document.getElementById("collapse1").addEventListener("click", function() {
     let content = document.getElementById("collapsible")

@@ -2,9 +2,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from .models import Link, Data
-from sorting import get_data
+from sorting import get_data, strip_to_sentences
 from analysis import gather_sentiment
-import sorting
 
 # Create your views here.
 def index(request):
@@ -31,7 +30,7 @@ def url_display(request):
 
             text = get_data(link.link_url)
             link.text = text
-
+            print(text)
             link.save()
 
             return HttpResponseRedirect('/sentiment/results/' + str(link.id) + "/")
@@ -43,7 +42,7 @@ def show_results(request, index):
     link = get_object_or_404(Link, id=index)
     text_sentiment = gather_sentiment(link.text)
     return render(request, 'url-display.html', {'link_url': link.link_url, 
-    'link_data': sorting.strip_to_sentences(link.text, link.link_url), "text_sentiment": text_sentiment})
+    'link_data': strip_to_sentences(link.text, link.link_url), "text_sentiment": text_sentiment})
 
 @csrf_exempt
 def delete_link(request, pk):

@@ -97,29 +97,34 @@ def get_data(url):
     #raw_html = response['parse']['text']['*']
     #document = html.document_fromstring(raw_html)
 
-        print(response.text)
+        #print(response.text)
         return parse_data(response.text)
     else: 
-        print(url[8:10])
-        print(url[30:])
+        #print(url[8:10])
+        #print(url[30:])
         wikipedia.set_lang(url[8:10])
         page = wikipedia.WikipediaPage(url[30:].replace("_", " "))
-        print(page.content)
+        #print(page.content)
         return page.content
     
-def strip_to_sentences(text_list: list, url): 
+def strip_to_sentences(text_list, url): 
     prefixes = {"Mr", "Mrs", "Dr", "Miss"}
     stripped_list = []
 
+    text = ''.join(text_list).split('" ,"')
     if "wikipedia" in url:
         stripped_list = re.split("{3}=|{2}= [a-zA-Z] {3}=|{2}=", text_list)
 
-    for i in range(len(text_list)):
-        sentence = text_list[i].replace('"content', "")
+    for i in range(len(text)):
+        sentence = text[i].replace('"content', "")
         sentence = sentence.replace('"formats', "")
         sentence = sentence.replace('"headline', "")
         sentence = sentence.strip("'\\\",' ")
+        print(sentence)
+        #print(sentence)
         if len(sentence) > 15:
             stripped_list.append(sentence)
-        
+
+    print(stripped_list)
+
     return stripped_list

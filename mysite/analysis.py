@@ -18,7 +18,7 @@ def gather_sentiment(text):
     freq = nltk.FreqDist(words)
 
     for sentence in sentences:
-        print(sia.polarity_scores(sentence)["compound"])
+        #print(sia.polarity_scores(sentence)["compound"])
         #print(">", is_positive(sentence), sentence)
         total_score += sia.polarity_scores(sentence)["compound"]
 

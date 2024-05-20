@@ -8,6 +8,7 @@
 .uncollapsed {
     display: block;
     background-color: #f1f1f1;
+    max-width: 10vw;
 }
 
 .collapsed {
@@ -16,6 +17,12 @@
     overflow: hidden;
     background-color: #f1f1f1;
   }
+
+.list {
+    max-width: 10vw;
+    font-size: 15px;
+    overflow-wrap: break-word;
+}
 
 .navbar {
     position: fixed;
