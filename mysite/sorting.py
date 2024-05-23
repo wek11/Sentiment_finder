@@ -5,18 +5,6 @@ import re
 orig_sslsocket_init = ssl.SSLSocket.__init__
 ssl.SSLSocket.__init__ = lambda *args, cert_reqs=ssl.CERT_NONE, **kwargs: orig_sslsocket_init(*args, cert_reqs=ssl.CERT_NONE, **kwargs)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f"Hi, {name}")  # Press Ctrl+F8 to toggle the breakpoint.
-    print('Hello')
-    print("hi")
-
-
-def getHTML(link):
-    return requests.get(link)
-
-
 def filter_tags(text):
     filtered_text = list = []
     unwanted_tags = set = {"none;", "\"locator", "{\"", "\"type\\"}
@@ -83,7 +71,8 @@ def get_data(url):
     if ("wikipedia" not in url):
         sys.stdout.reconfigure(encoding='utf-8')
         headers = { 'User-agent':
-                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0'
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0',
+                'Accept-Encoding': 'identity'
             }
         params = {
             'action': 'parse',
@@ -92,39 +81,31 @@ def get_data(url):
             'prop': 'text',
             'redirects':''
         }
-        response = requests.get(url, headers=headers, verify=False)
+        response = requests.get(url, headers=headers)
 
-    #raw_html = response['parse']['text']['*']
-    #document = html.document_fromstring(raw_html)
-
-        #print(response.text)
         return parse_data(response.text)
     else: 
-        #print(url[8:10])
-        #print(url[30:])
         wikipedia.set_lang(url[8:10])
-        page = wikipedia.WikipediaPage(url[30:].replace("_", " "))
-        #print(page.content)
+        page = wikipedia.WikipediaPage(url[30:].replace("_", " ")) 
         return page.content
     
-def strip_to_sentences(text_list, url): 
-    prefixes = {"Mr", "Mrs", "Dr", "Miss"}
+def strip_to_sentences(text: str, url): 
+    
     stripped_list = []
+    text_list = '|'.join(text).split("|")
 
-    text = ''.join(text_list).split('" ,"')
     if "wikipedia" in url:
-        stripped_list = re.split("{3}=|{2}= [a-zA-Z] {3}=|{2}=", text_list)
+        stripped_list = re.split("{3}=|{2}= [a-zA-Z] {3}=|{2}=", text)
 
-    for i in range(len(text)):
-        sentence = text[i].replace('"content', "")
+    for i in range(len(text_list)):
+        sentence = text_list[i].replace('"content', "")
         sentence = sentence.replace('"formats', "")
         sentence = sentence.replace('"headline', "")
+
         sentence = sentence.strip("'\\\",' ")
-        print(sentence)
-        #print(sentence)
+        sentence = sentence.strip('"[]')
+        
         if len(sentence) > 15:
             stripped_list.append(sentence)
 
-    print(stripped_list)
-
-    return stripped_list
+    return "|".join(stripped_list)

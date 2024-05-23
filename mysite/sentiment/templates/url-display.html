@@ -2,7 +2,9 @@
 
 <html>
     <header>
-
+    
+        {% load static %}
+       
     </header>
     <body>
 
@@ -15,16 +17,11 @@
         </h1>
 
         <p>
-            {{ link_data }}
-            <!--
             {% if link_data %}
-                <ul>
                 {% for link in link_data %}
-                    <li>{{ link }}</li>
+                    <br> {{ link }}
                 {% endfor %}
-                </ul>
             {% endif %}
-            -->
         </p>
 
         
@@ -37,7 +34,7 @@
         </h2>
 
     </body>
-
-    <link rel="stylesheet" href="../static/css/url-display.css">
+    
+    <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display.css' %}">
 
 </html>

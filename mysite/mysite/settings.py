@@ -118,7 +118,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#STATIC_ROOT = 'C:/Users/2010738/Desktop/Sentiment_finder/mysite/mysite/static'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "C:/Users/2010738/Desktop/Sentiment_finder/mysite/mysite/static",
+]

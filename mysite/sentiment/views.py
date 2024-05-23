@@ -29,8 +29,8 @@ def url_display(request):
             link.id = length + 1
 
             text = get_data(link.link_url)
-            link.text = text
-            print(text)
+            link.text = strip_to_sentences(text, link.link_url)
+
             link.save()
 
             return HttpResponseRedirect('/sentiment/results/' + str(link.id) + "/")
@@ -39,10 +39,11 @@ def url_display(request):
         return HttpResponseRedirect('/sentiment/')
     
 def show_results(request, index):
+    
     link = get_object_or_404(Link, id=index)
     text_sentiment = gather_sentiment(link.text)
     return render(request, 'url-display.html', {'link_url': link.link_url, 
-    'link_data': strip_to_sentences(link.text, link.link_url), "text_sentiment": text_sentiment})
+    'link_data': link.text.split("|"), "text_sentiment": text_sentiment})
 
 @csrf_exempt
 def delete_link(request, pk):

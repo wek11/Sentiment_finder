@@ -7,6 +7,11 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+p {
+    background-color: whitesmoke;
+    font-family: "Poppins", sans-serif;
+}
+
 h1 {
     font-family: "Prata", sans-serif;
     font-weight: 500;
@@ -19,14 +24,6 @@ h1 {
     font-family: "Prata", serif;
     font-weight: 400;
     font-style: normal;
-}
-
-section {
-    display: grid;
-    place-items: center;
-    align-content: center;
-    min-height: 100vh;
-    font-weight: 20;
 }
 
 .hidden .show {

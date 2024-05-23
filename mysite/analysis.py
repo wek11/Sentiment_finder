@@ -10,8 +10,8 @@ def gather_sentiment(text):
 
     avg = 0.0
     words = nltk.word_tokenize(text)
-    sentences = text.split("',")
-    sentences = sorting.strip_to_sentences(sentences, "")
+
+    sentences = text.split("|")
     words = [w for w in words if w.isalpha()]
     if len(sentences) == 0:
         return "N/A"

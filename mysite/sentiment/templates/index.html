@@ -31,7 +31,7 @@
 
 
     <header>
-
+        {% load static %}
     </header>
 
     <body>
@@ -57,7 +57,7 @@
 
     </body>
 
-    <script defer src = "../static/javascript/index.js"></script>
-    <link rel="stylesheet" href="../static/css/index.css">
+    <script defer src = "{% static 'sentiment/javascript/index.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'sentiment/css/index.css' %}">
 
 </html>
