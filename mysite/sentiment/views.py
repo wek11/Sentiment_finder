@@ -26,6 +26,7 @@ def url_display(request):
         else:
             length = Link.objects.all().count()
             link = Link(link_url=request.POST['link-url'], text="")
+            print(link.id)
             link.id = length + 1
 
             text = get_data(link.link_url)
@@ -39,11 +40,15 @@ def url_display(request):
         return HttpResponseRedirect('/sentiment/')
     
 def show_results(request, index):
-    
+    link_list = Link.objects.order_by('id')
     link = get_object_or_404(Link, id=index)
     text_sentiment = gather_sentiment(link.text)
-    return render(request, 'url-display.html', {'link_url': link.link_url, 
-    'link_data': link.text.split("|"), "text_sentiment": text_sentiment})
+    context = {
+        'link_url': link.link_url, 
+        'link_data': link.text.split("|"), 
+        "text_sentiment": text_sentiment, 
+        "link_list": link_list}
+    return render(request, 'url-display.html', context)
 
 @csrf_exempt
 def delete_link(request, pk):
@@ -51,7 +56,7 @@ def delete_link(request, pk):
 
     if request.method == 'POST':
         link.delete()
-        Link.reset_id(Link)
+        Link.reset_id()
         return JsonResponse({"name": 'worked'})
     
     return render(request, 'index.html')

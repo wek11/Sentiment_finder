@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 
 <html>
+
+    <div class="navbar">
+
+        <h2>Your Links<button type="button" id="collapse1">close</button></h2>
+
+        <div id="collapsible" class="collapsed">
+
+            {% if link_list %}
+                <ul style="padding-left: 5px">
+                {% for link in link_list %}
+                    <li class="list"> 
+                        <a href="/sentiment/results/{{ link.id }}/">{{ link.link_url }}</a><button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No links are available.</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
     <header>
     
         {% load static %}
-       
+        <script defer src = "{% static 'sentiment/javascript/url-display.js' %}"></script>
+        <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display.css' %}">
     </header>
     <body>
 
@@ -35,6 +59,6 @@
 
     </body>
     
-    <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display.css' %}">
+    
 
 </html>

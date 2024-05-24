@@ -95,7 +95,8 @@ def strip_to_sentences(text: str, url):
     text_list = '|'.join(text).split("|")
 
     if "wikipedia" in url:
-        stripped_list = re.split("{3}=|{2}= [a-zA-Z] {3}=|{2}=", text)
+        print(text)
+        return "|".join(re.split(r"=+[a-zA-Z]=+", text))
 
     for i in range(len(text_list)):
         sentence = text_list[i].replace('"content', "")

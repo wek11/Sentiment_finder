@@ -10,6 +10,7 @@ class Link(models.Model):
     def __str__(self):
         return self.link_url
     
+    @staticmethod
     def reset_id(self):
         links = self.objects.all()
         index = 0
