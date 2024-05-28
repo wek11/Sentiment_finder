@@ -19,7 +19,7 @@
   }
 
 .list {
-    max-width: 10vw;
+    max-width: 10vh;
     font-size: 15px;
     overflow-wrap: break-word;
 }

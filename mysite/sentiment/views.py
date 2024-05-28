@@ -24,8 +24,9 @@ def url_display(request):
             return render(request, "index.html")
         
         else:
-            length = Link.objects.all().count()
+           
             link = Link(link_url=request.POST['link-url'], text="")
+            length = Link.objects.all().count()
             print(link.id)
             link.id = length + 1
 
@@ -56,7 +57,7 @@ def delete_link(request, pk):
 
     if request.method == 'POST':
         link.delete()
-        Link.reset_id()
+        Link.reset_id(Link)
         return JsonResponse({"name": 'worked'})
     
     return render(request, 'index.html')
