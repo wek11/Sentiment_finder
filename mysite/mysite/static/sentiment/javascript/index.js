@@ -38,9 +38,11 @@ var i;
 document.getElementById("collapse1").addEventListener("click", function() {
     let content = document.getElementById("collapsible")
     if (content.classList.contains("uncollapsed")) {
+        document.getElementById("collapse1").innerHTML = 'Open'
         content.classList.add("collapsed")
         content.classList.remove("uncollapsed")
     } else {
+        document.getElementById("collapse1").innerHTML = 'Close'
         content.classList.remove("collapsed")
         content.classList.add("uncollapsed")
     }

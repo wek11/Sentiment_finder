@@ -19,7 +19,6 @@
   }
 
 .list {
-    max-width: 10vh;
     font-size: 15px;
     overflow-wrap: break-word;
 }
@@ -80,4 +79,18 @@ div {
     width: 200px;
     padding-left: 20px;
     height: 100vh;
+}
+
+#collapse1 {
+
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5%;
+    flex: auto;
+}
+
+h2 {
+    margin: 5px;
+    display: flex;
 }

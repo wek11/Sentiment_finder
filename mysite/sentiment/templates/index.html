@@ -5,7 +5,7 @@
 
     <div class="navbar">
 
-        <h2>Your Links<button type="button" id="collapse1">close</button></h2>
+        <h2><button type="button" id="collapse1">Open</button><p style="text-align: right;">Your Links</p></h2>
 
         <div id="collapsible" class="collapsed">
 
@@ -50,8 +50,10 @@
                 the results page for that website, that shows you the content from the site and gives you a sentiment
                 score ranging from -1 to 1, -1 being very negative and 1 being very positive.
             </p>
+            <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-top: 10vh;">
         </section>
         <section class="hidden">
+            <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-bottom: 30vh;">
             <form action="/sentiment/index/" method="post">
                 {% csrf_token %}
                 <label for="link_view">Your link: </label>
