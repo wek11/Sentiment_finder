@@ -93,4 +93,5 @@ div {
 h2 {
     margin: 5px;
     display: flex;
+    height: auto;
 }
