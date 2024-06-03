@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 
 <html>
+    
+<a href="../../" style="position: fixed; top: 10px; background-color: whitesmoke;"> Main page </a>
 
     <div class="navbar">
-    <a href="../../"> Main page </a>
+
+        
+    
         <h2><button type="button" id="collapse1">Open</button><p style="text-align: right; vertical-align: middle; margin: 0px;">Your Links</p></h2>
 
         <div id="collapsible" class="collapsed">
@@ -11,10 +15,10 @@
             {% if link_list %}
                 <ul style="padding-left: 5px">
                 {% for link in link_list %}
-                    <li class="list"> 
+                    <p class="list"> 
                         <a href="/sentiment/results/{{ link.id }}/">
                         {{ link.link_url }}</a><button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
-                    </li>
+                    </p>
                 {% endfor %}
                 </ul>
             {% else %}
@@ -26,29 +30,31 @@
     </div>
 
     <header>
-    
+        <h1>Results</h1>
         {% load static %}
         <script defer src = "{% static 'sentiment/javascript/url-display.js' %}"></script>
-        <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display.css' %}">
+        <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display-alt.css' %}">
     </header>
 
 
-    <body>
+    <body class="content">
 
-        <h1 style="padding-top: 100px;">
+        <h2>
 
-            {{ link_url }}
-
-            {{ text_sentiment }}
-
-        </h1>
+            Link: {{ link_url }}
+            <br>
+            Sentiment: {{ text_sentiment }}
+        </h2>
 
         <p>
-            {% if link_data %}
-                {% for link in link_data %}
-                    <br> {{ link }}
-                {% endfor %}
-            {% endif %}
+            <div>Link content:</div>
+            <div>
+                {% if link_data %}
+                    {% for link in link_data %}
+                        {{ link }} <br>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </p>
 
         <h2>
