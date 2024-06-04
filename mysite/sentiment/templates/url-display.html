@@ -43,8 +43,11 @@
 
             Link: {{ link_url }}
             <br>
-            Sentiment: {{ text_sentiment }}
+            Sentiment (-1 to -.5 is very negative, -.5 to -.1 is negative, -.1 to .1 is neutral, .1 to .5 is postive, and .5 to 1 is very positive):<br>
+            {{ text_sentiment }}
         </h2>
+
+        <!--
 
         <p>
             <div>Link content:</div>
@@ -57,11 +60,7 @@
             </div>
         </p>
 
-        <h2>
-
-            {{ sentiment_score }}
-
-        </h2>
+         -->
 
     </body>
     
