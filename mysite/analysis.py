@@ -28,7 +28,7 @@ def gather_sentiment(text):
     if (total_score < -0.5):
         return (out_str + ". This page is very negative "), "very_negative"
     elif (total_score < -.1): 
-        return (out_str + ". This page is negative "), "{% static 'sentiment/images/negative.png' %}"
+        return (out_str + ". This page is negative "), "negative"
     elif (total_score < .1):
         return (out_str + ". This page is neutral "), "neutral"
     elif (total_score < .5):
