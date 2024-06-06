@@ -37,15 +37,19 @@
     </header>
 
 
-    <body class="content">
+    <body>
 
-        <h2>
+        <div class="container">
+            <h2>
+                Link: <a href="{{ link_url }}" class="link" target="_blank">{{ link_url }}</a>
+                <br>
+                Sentiment:<br>
+                <span class="sentiment">{{ text_sentiment }}</span>
+                <img src="{{smiley}}" alt="{{ smiley }} smiley face" style="max-height: 10vh;">
+            </h2>
+        </div>
 
-            Link: {{ link_url }}
-            <br>
-            Sentiment (-1 to -.5 is very negative, -.5 to -.1 is negative, -.1 to .1 is neutral, .1 to .5 is postive, and .5 to 1 is very positive):<br>
-            {{ text_sentiment }}
-        </h2>
+        <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="{{ smiley }} smiley face" style="max-height: 10vh;">
 
         <!--
 

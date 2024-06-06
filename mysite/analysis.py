@@ -24,17 +24,17 @@ def gather_sentiment(text):
 
 
     total_score /= len(sentences)
-
+    out_str = "Score: " + str(round(total_score, 3))
     if (total_score < -0.5):
-        return ['very negative', total_score]
+        return (out_str + ". This page is very negative "), "very_negative"
     elif (total_score < -.1): 
-        return ['negative', total_score]
+        return (out_str + ". This page is negative "), "{% static 'sentiment/images/negative.png' %}"
     elif (total_score < .1):
-        return ['neutral', total_score]
+        return (out_str + ". This page is neutral "), "neutral"
     elif (total_score < .5):
-        return ['positive', total_score]
+        return (out_str + ". This page is postive "), "positive"
     elif (total_score < 1):
-        return ['very positive', total_score]
+        return (out_str + ". This page is very positive "), "very_positive"
 
 def is_positive(sentence: str) -> bool:
     return sia.polarity_scores(sentence)["compound"] > 0

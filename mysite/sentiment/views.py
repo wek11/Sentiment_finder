@@ -43,12 +43,13 @@ def url_display(request):
 def show_results(request, index):
     link_list = Link.objects.order_by('id')
     link = get_object_or_404(Link, id=index)
-    text_sentiment = gather_sentiment(link.text)
+    text_sentiment, smiley = gather_sentiment(link.text)
     context = {
         'link_url': link.link_url, 
         'link_data': link.text.split("|"), 
         "text_sentiment": text_sentiment, 
-        "link_list": link_list}
+        "link_list": link_list,
+        "smiley" : smiley}
     return render(request, 'url-display.html', context)
 
 @csrf_exempt
