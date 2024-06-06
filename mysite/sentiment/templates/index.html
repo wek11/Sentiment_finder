@@ -12,9 +12,10 @@
             {% if link_list %}
                 <ul style="padding-left: 5px">
                 {% for link in link_list %}
-                    <li class="list"> 
-                        <a href="/sentiment/results/{{ link.id }}/">{{ link.link_url }}</a><button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
-                    </li>
+                    <p class="list"> 
+                        <a href="/sentiment/results/{{ link.id }}/">
+                        {{ link.link_url }}</a><button onclick="deleteMe(this, '{{ link.id }}')">Delete</button>
+                    </p>
                 {% endfor %}
                 </ul>
             {% else %}
@@ -33,7 +34,7 @@
     <header>
         {% load static %}
         <script defer src = "{% static 'sentiment/javascript/index.js' %}"></script>
-        <link rel="stylesheet" href="{% static 'sentiment/css/test2.css' %}">
+        <link rel="stylesheet" href="{% static 'sentiment/css/index.css' %}">
     </header>
 
     <body>
