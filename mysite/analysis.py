@@ -1,9 +1,14 @@
+"""
+    Analysis file that gathers sentiment from a given link, given a text
+"""
+
 import nltk
 import sorting
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 sia = SentimentIntensityAnalyzer()
 
+# Main analysis method, returns the sentiment with the correct one-word identifier
 def gather_sentiment(text):
     stopwords = nltk.corpus.stopwords.words("english")
     total_score= 0.0
@@ -18,8 +23,6 @@ def gather_sentiment(text):
     freq = nltk.FreqDist(words)
 
     for sentence in sentences:
-        #print(sia.polarity_scores(sentence)["compound"])
-        #print(">", is_positive(sentence), sentence)
         total_score += sia.polarity_scores(sentence)["compound"]
 
 
@@ -35,6 +38,3 @@ def gather_sentiment(text):
         return (out_str + ". This page is postive "), "positive"
     elif (total_score < 1):
         return (out_str + ". This page is very positive "), "very_positive"
-
-def is_positive(sentence: str) -> bool:
-    return sia.polarity_scores(sentence)["compound"] > 0

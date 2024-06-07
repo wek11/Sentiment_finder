@@ -5,6 +5,7 @@ import re
 orig_sslsocket_init = ssl.SSLSocket.__init__
 ssl.SSLSocket.__init__ = lambda *args, cert_reqs=ssl.CERT_NONE, **kwargs: orig_sslsocket_init(*args, cert_reqs=ssl.CERT_NONE, **kwargs)
 
+# Filters certain tags out of the text so sentiment analysis is more accurate
 def filter_tags(text):
     filtered_text = list = []
     unwanted_tags = set = {"none;", "\"locator", "{\"", "\"type\\"}
@@ -36,6 +37,7 @@ def filter_tags(text):
 
     return filtered_text
 
+# Initial gathering of data and filters out a majority of text
 def parse_data(data):
     append_data = boolean = False
     text = list = []
@@ -57,17 +59,14 @@ def parse_data(data):
 
     return text
 
+# Main method to get data, called from views.py
 def get_data(url):
+
     os.environ['CURL_CA_BUNDLE'] = ""
     scontext = ssl.SSLContext(ssl.PROTOCOL_TLS)
     scontext.verify_mode = ssl.VerifyMode.CERT_NONE
-    """headers = { 'User-agent':
-                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0'
-                }
-    txt = requests.get(url, headers=headers, verify=False).text
-    soup = BeautifulSoup(txt, 'html.parser')
-    print(soup.prettify())
-    return soup.get_text().split(".")"""
+
+    # If it's not a wikipedia link, uses my text gathering method. Else, uses wikipedia library
     if ("wikipedia" not in url):
         sys.stdout.reconfigure(encoding='utf-8')
         headers = { 'User-agent':
@@ -89,6 +88,7 @@ def get_data(url):
         page = wikipedia.WikipediaPage(url[30:].replace("_", " ")) 
         return page.content
     
+# Strips a string to a list of sentences, called from views,py and analysis.py for ease of use
 def strip_to_sentences(text: str, url): 
     
     stripped_list = []

@@ -1,3 +1,8 @@
+<!--
+    Main page template that the user can submit links on, navigate to already submitted links, and
+    already delete submitted links.
+-->
+
 <!DOCTYPE html>
 
 
@@ -32,13 +37,12 @@
 
 
     <header>
-        {% load static %}
-        <script defer src = "{% static 'sentiment/javascript/index.js' %}"></script>
+        {% load static %}  
         <link rel="stylesheet" href="{% static 'sentiment/css/index.css' %}">
     </header>
 
     <body>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>    
+          
 
         <section class="hidden">
             <h1>
@@ -51,19 +55,25 @@
                 the results page for that website, that shows you the content from the site and gives you a sentiment
                 score ranging from -1 to 1, -1 being very negative and 1 being very positive.
             </p>
+            <p style="max-width: 40vw; width: 40vw;">
+                List of accepted websites: Wikipedia, BBC, NY Times (most articles) <br>
+                If you have a website not in this list, it may work but the sentiment will likely be inaccurate.
+            </p>
             <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-top: 10vh;">
         </section>
         <section class="hidden">
             <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-bottom: 30vh;">
-            <form action="/sentiment/index/" method="post">
+            <form action="/sentiment/index/" method="post" class="submit-link">
                 {% csrf_token %}
                 <label for="link_view">Your link: </label>
                 <input id="link_view" type="text" name="link-url" value="">
-                <input type="submit" value="OK">
+                <input type="submit" value="Submit">
             </form>
         </section>
 
         
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+        <script defer src = "{% static 'sentiment/javascript/index.js' %}"></script>
 
     </body>
 

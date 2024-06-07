@@ -15,6 +15,7 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
 
+// Ajax request when deleting links, does it using Ajax so page does not have to be reloaded
 let deleteMe = (ele, id) => {
     $.ajax({
         url: "http://127.0.0.1:8000/sentiment/delete/".concat(id),
@@ -34,6 +35,7 @@ let deleteMe = (ele, id) => {
 var coll = document.getElementsByClassName("collapsible");
 var i; 
 
+// Button listener so that the user can collapse the link menu when clicking the button
 document.getElementById("collapse1").addEventListener("click", function() {
     let content = document.getElementById("collapsible")
     if (content.classList.contains("uncollapsed")) {

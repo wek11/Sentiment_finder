@@ -1,3 +1,7 @@
+/*
+    Styling used for index.html, the main page. 
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -5,7 +9,7 @@
     display: block;
     background-color: white;
     width: auto;
-    height:fit-content;
+    height: fit-content;
 }
 
 .collapsed {
@@ -83,10 +87,6 @@ section {
     transform: translateX(0);
 }
 
-div {
-    
-}
-
 #collapse1 {
     height: 50%;
     margin-top: auto;
@@ -99,4 +99,15 @@ h2 {
     margin: 5px;
     display: flex;
     height: auto;
+}
+
+.submit-link {
+    font-size: 24px;
+    display: flex;
+}
+
+.submit-link input {
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
 }

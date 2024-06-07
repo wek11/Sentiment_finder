@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 
+# Link model, stores the url and text associated with a given link, and 
+# has a method to reset the id's when a link is a modified
 class Link(models.Model):
     link_url = models.CharField(max_length=300)
 
@@ -17,9 +19,4 @@ class Link(models.Model):
         for link in links:
             link.id = index
             index += 1
-    
-class Data(models.Model):
-    text = models.CharField(max_length=10000)
 
-    def __str__(self):
-        return self.text

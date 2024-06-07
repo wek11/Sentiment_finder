@@ -1,14 +1,16 @@
+/*
+    Styling used for url-display.html, the page where the user can see the 
+    sentiment associated with a given link.
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.collapsible {
-    padding: 10px;
-}
-
 .uncollapsed {
     display: block;
-    background-color: #f1f1f1;
-    max-width: 10vw;
+    background-color: white;
+    width: auto;
+    height: fit-content;
 }
 
 .collapsed {
@@ -16,20 +18,27 @@
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-  }
+}
 
 .list {
-    max-width: 10vw;
     font-size: 15px;
     overflow-wrap: break-word;
 }
 
+.list button {
+    margin-left: 10px;
+    color: red;
+}
+
 .navbar {
-    top: 0; left: 0;
     position: fixed;
-    z-index: 10; 
-    background-color: whitesmoke;
-    height: fit-content;
+    z-index: 10;
+    background-color: white;
+    border-style: outset;
+    border-radius: 1px;
+    height: auto;
+    width: 200px;
+    padding-left: 10px;
 }
 
 body {
@@ -60,12 +69,6 @@ section {
     font-weight: 20;
 }
 
-.hidden .show {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateX(0);
-}
-
 .hidden {
     opacity: 0;
     filter: blur(5px);
@@ -79,8 +82,41 @@ section {
     transform: translateX(0);
 }
 
-div {
-    width: 200px;
-    padding-left: 20px;
-    height: 100vh;
-} 
+#collapse1 {
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5%;
+    flex: auto;
+}
+
+.container h2 {
+    margin: 5px;
+    display: grid;
+    height: auto;
+}
+
+h2 {
+    margin: 5px;
+    display: flex;
+    height: auto;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.smiley {
+    padding-top: 30px;
+    max-height: 30vh;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}

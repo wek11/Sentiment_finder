@@ -1,3 +1,9 @@
+<!-- 
+    Page that the user can view the sentiment from the link they submitted and can
+    navigate to the page associated with the submitted link. The user can also navigate
+    to the main page and delete already submitted links, or navigate to said links.
+-->
+
 <!DOCTYPE html>
 
 <html>
@@ -27,8 +33,8 @@
     <header>
         <h1>Results</h1>
         {% load static %}
-        <script defer src = "{% static 'sentiment/javascript/url-display.js' %}"></script>
-        <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display-alt.css' %}">
+        
+        <link rel="stylesheet" type='text/css' href="{% static 'sentiment/css/url-display.css' %}">
     </header>
 
 
@@ -44,21 +50,8 @@
             </h2>
         </div>
 
-
-        <!--
-
-        <p>
-            <div>Link content:</div>
-            <div>
-                {% if link_data %}
-                    {% for link in link_data %}
-                        {{ link }} <br>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </p>
-
-         -->
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+         <script defer src = "{% static 'sentiment/javascript/url-display.js' %}"></script>
 
     </body>
     

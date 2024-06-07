@@ -15,6 +15,7 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
 
+// Ajax request to delete links from the link list without having to refresh the page
 let deleteMe = (ele, id) => {
     $.ajax({
         url: "http://127.0.0.1:8000/sentiment/delete/".concat(id),
@@ -25,7 +26,6 @@ let deleteMe = (ele, id) => {
         }, 
         success : function(response){
             ele.parentNode.remove();
-            alert("worked")
         },
         error: function (error){},
 
@@ -35,6 +35,7 @@ let deleteMe = (ele, id) => {
 var coll = document.getElementsByClassName("collapsible");
 var i; 
 
+// Event listener on the open/close button so the user can open/close the links menu
 document.getElementById("collapse1").addEventListener("click", function() {
     let content = document.getElementById("collapsible")
     if (content.classList.contains("uncollapsed")) {
