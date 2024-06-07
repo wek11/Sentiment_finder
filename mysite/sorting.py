@@ -27,13 +27,14 @@ def filter_tags(text):
 
 
             # Doesn't append tag if its not a paragraph
-            if indiv_tag[0].isupper() or indiv_tag[0] == "\"":
-                # Adds the first 15 characters of each tag appended to sorted_text
-                # to unwanted_tags to avoid duplicate text blocks
-                # Adds b instead of indiv_tag b/c data.txt is not filtered
-                unwanted_tags.add(b[:len(b) - 10])
+            if len(indiv_tag) > 0:
+                if indiv_tag[0].isupper() or indiv_tag[0] == "\"":
+                    # Adds the first 15 characters of each tag appended to sorted_text
+                    # to unwanted_tags to avoid duplicate text blocks
+                    # Adds b instead of indiv_tag b/c data.txt is not filtered
+                    unwanted_tags.add(b[:len(b) - 10])
 
-                filtered_text.append(indiv_tag)
+                    filtered_text.append(indiv_tag)
 
     return filtered_text
 

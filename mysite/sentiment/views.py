@@ -22,11 +22,8 @@ def url_display(request):
             return render(request, "index.html", {'link_list': Link.objects.order_by('id')})
         
         else:
-           
-            link = Link(link_url=request.POST['link-url'], text="")
             length = Link.objects.all().count()
-            print(link.id)
-            link.id = length + 1
+            link = Link(link_url=request.POST['link-url'], text="", id=length+1)
 
             text = get_data(link.link_url)
             link.text = strip_to_sentences(text, link.link_url)
@@ -60,7 +57,13 @@ def delete_link(request, pk):
 
     if request.method == 'POST':
         link.delete()
-        Link.reset_id(Link)
+        i = 1
+        for i in range(1, Link.objects.all().count()):
+             if i >= pk:
+                url = get_object_or_404(Link, id=i + 1)
+                url.id = url.id - 1
+                url.save()
+    
         return JsonResponse({"name": 'worked'})
     
     return render(request, 'index.html')
