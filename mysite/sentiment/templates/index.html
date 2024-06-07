@@ -59,10 +59,7 @@
                 List of accepted websites: Wikipedia, BBC, NY Times (most articles) <br>
                 If you have a website not in this list, it may work but the sentiment might be inaccurate.
             </p>
-            <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-top: 10vh;">
-        </section>
-        <section class="hidden">
-            <img src="{% static 'sentiment/images/down_arrow.png' %}" alt="Downwards pointing arrow" style="max-height: 10vh; margin-bottom: 30vh;">
+            <br> 
             <form action="/sentiment/index/" method="post" class="submit-link">
                 {% csrf_token %}
                 <label for="link_view">Your link: </label>
