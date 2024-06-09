@@ -23,7 +23,7 @@ def url_display(request):
         
         else:
             length = Link.objects.all().count()
-            link = Link(link_url=request.POST['link-url'], text="", id=length+1)
+            link = Link(link_url=request.POST['link-url'], text="")
 
             text = get_data(link.link_url)
             link.text = strip_to_sentences(text, link.link_url)
