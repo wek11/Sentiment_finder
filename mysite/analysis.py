@@ -5,7 +5,6 @@
 import nltk
 import sorting
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
 sia = SentimentIntensityAnalyzer()
 
 # Main analysis method, returns the sentiment with the correct one-word identifier
