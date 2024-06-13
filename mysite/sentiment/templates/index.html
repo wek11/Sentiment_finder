@@ -50,22 +50,37 @@
                 Welcome to Sentiment Finder
 
             </h1>
-            <p style="max-width: 40vw">
+            <p style="max-width: 40vw; text-align: center;">
                 You can submit any link from the list of accepted websites. You will then be redirected to
                 the results page for that website, that shows you the content from the site and gives you a sentiment
                 score ranging from -1 to 1, -1 being very negative and 1 being very positive.
             </p>
-            <p style="max-width: 40vw; width: 40vw;">
+            <p style="max-width: 40vw; width: 40vw;  text-align: center;">
                 List of accepted websites: Wikipedia, BBC, NY Times (most articles) <br>
                 If you have a website not in this list, it may work but the sentiment might be inaccurate.
             </p>
-            <br> 
-            <form action="/sentiment/index/" method="post" class="submit-link">
+            <form action="/sentiment/index/" method="post" class="submit-link" style="margin-top: 100px; ">
                 {% csrf_token %}
                 <label for="link_view">Your link: </label>
                 <input id="link_view" type="text" name="link-url" value="">
                 <input type="submit" value="Submit">
             </form>
+        </section>
+        <section class="hidden">
+            <h1> About:</h1>
+            <p style="max-width: 40vw; width: 40vw;  text-align: center;">
+            William Klein <br>
+            Advanced Programming Topics <br>
+            Period 1 <br>
+            Completed 6/7/24
+            </p>
+            <h4 style="margin-bottom: 3px;">Sentiment Finder</h4>
+            <p style="max-width: 40vw; width: 40vw;  text-align: center;">
+                This website allows you to submit links to a webpage and see the overall sentiment behind them.
+                For example, an article about war would be negative, while one about puppys would be positive.
+                <h4>Tech Stack:</h4>
+                VSCode for the IDE; Python for the main language; HTML, CSS, JS for web development
+            </p>
         </section>
 
         

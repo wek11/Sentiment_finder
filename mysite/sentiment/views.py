@@ -23,7 +23,7 @@ def url_display(request):
         
         else:
             length = Link.objects.all().count()
-            link = Link(link_url=request.POST['link-url'], text="", id=length+1)
+            link = Link(link_url=request.POST['link-url'], text="")
 
             text = get_data(link.link_url)
             link.text = strip_to_sentences(text, link.link_url)
@@ -38,6 +38,7 @@ def url_display(request):
 # Method to shwo the results of a link, ran after the data is retrieved or when
 # a link is clicked on in the Navbar
 def show_results(request, index):
+    Link.reset_id(Link)
     link_list = Link.objects.order_by('id')
     link = get_object_or_404(Link, id=index)
     text_sentiment, smiley = gather_sentiment(link.text)
@@ -56,13 +57,20 @@ def delete_link(request, pk):
     link = get_object_or_404(Link, pk=pk)
 
     if request.method == 'POST':
+        #print(Link.objects.all())
         link.delete()
-        i = 1
-        for i in range(1, Link.objects.all().count()):
-             if i >= pk:
+        Link.reset_id(Link)
+        #print(Link.objects.all())
+        """for i in range(1, Link.objects.all().count() + 1):
+             if i >= int(pk):
+                print(Link.objects.all())
                 url = get_object_or_404(Link, id=i + 1)
+                print(url.link_url)
+                print(url.id)
                 url.id = url.id - 1
                 url.save()
+                print(Link.objects.all())"""
+
     
         return JsonResponse({"name": 'worked'})
     
